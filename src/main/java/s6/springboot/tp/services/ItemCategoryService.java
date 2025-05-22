@@ -21,14 +21,18 @@ public class ItemCategoryService {
         return repository.findAll();
     }
 
+    public ItemCategory findByName(String name)
+    {
+        return repository.findFirstByNameLike(name);
+    }
+
     public ItemCategory createCategory(String name)
     {
         ItemCategory category = new ItemCategory(name);
-        if(repository.findAllByNameLike(name).isEmpty())
-        {
-            repository.save(category);
-            return category;
-        }
-        return null;
+        if(!repository.findAllByNameLike(name).isEmpty())
+            return null;
+
+        repository.save(category);
+        return category;
     }
 }

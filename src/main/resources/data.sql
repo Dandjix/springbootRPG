@@ -1,6 +1,6 @@
 INSERT INTO categories (name) VALUES
-                                  ('helmet'), ('crown'), ('armor'), ('clothes'), ('weapon'),('lighter'), ('purse'),('potion'), ('spell'), ('food');
-/*
+    ('helmet'), ('crown'), ('armor'), ('clothes'), ('weapon'),('lighter'), ('purse'),('potion'), ('spell'), ('food');
+
 INSERT INTO rpgitems (name, id_category, price, effect) VALUES
     ('conic helmet',1, 200.0, 'A+10'),
     ('great crown of apologia', 2, 200.0, 'A+20'),
@@ -18,4 +18,3 @@ INSERT INTO rpgitems (name, id_category, price, effect) VALUES
     ('apple', 10, 1.1, 'l+1'),
     ('wine', 10, 9.75, 'l+2'),
     ('holy toilet plunger', 5, 1000, 'S+2');
-*/

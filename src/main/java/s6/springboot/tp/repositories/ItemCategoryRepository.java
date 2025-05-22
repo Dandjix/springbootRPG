@@ -8,4 +8,6 @@ import java.util.List;
 public interface ItemCategoryRepository extends JpaRepository<ItemCategory,Long> {
 
     List<ItemCategory> findAllByNameLike(String name);
+
+    ItemCategory findFirstByNameLike(String name);
 }
