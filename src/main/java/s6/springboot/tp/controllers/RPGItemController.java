@@ -19,8 +19,11 @@ public class RPGItemController {
     }
 
     @GetMapping("/rpg/items")
-    public List<RPGItem> getAllItems()
+    public List<RPGItem> getAllItems(@RequestParam(required = false) List<String> like)
     {
+        if(like != null)
+            return service.getAllItemsWithPatterns(like);
+
         return service.getAllItems();
     }
 
@@ -32,6 +35,6 @@ public class RPGItemController {
             return service.getItemsOfCategoryAndMaxPrice(catName,maxPrice);
         }
         return service.getItemsOfCategory(catName);
-
     }
+
 }

@@ -5,6 +5,8 @@ import s6.springboot.tp.models.ItemCategory;
 import s6.springboot.tp.models.RPGItem;
 import s6.springboot.tp.repositories.RPGItemRepository;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -26,6 +28,8 @@ public class RPGItemService {
     public List<RPGItem> getItemsOfCategory(String catName)
     {
         ItemCategory cat = itemCategoryService.findByName(catName);
+        if(cat == null)
+            return new ArrayList<RPGItem>(0);
         return repository.findByIdCategoryEquals(cat.getId());
     }
 
@@ -36,6 +40,21 @@ public class RPGItemService {
 
     public List<RPGItem> getItemsOfCategoryAndMaxPrice(String catName, float maxPrice) {
         ItemCategory cat = itemCategoryService.findByName(catName);
+        if(cat == null)
+            return new ArrayList<RPGItem>(0);
         return repository.findAllByIdCategoryEqualsAndPriceLessThanEqual(cat.getId(),maxPrice);
+    }
+
+    public List<RPGItem> getAllItemsWithPatterns(List<String> namePaterns) {
+        HashMap<String,RPGItem> foundItems = new HashMap<String, RPGItem>();
+        for(String pattern : namePaterns)
+        {
+            List<RPGItem> items = repository.findAllByNameLike(pattern);
+            for(RPGItem item : items)
+            {
+                foundItems.put(item.getName(),item);
+            }
+        }
+        return new ArrayList<RPGItem>(foundItems.values());
     }
 }
