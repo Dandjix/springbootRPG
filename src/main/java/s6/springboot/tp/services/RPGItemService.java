@@ -33,9 +33,13 @@ public class RPGItemService {
         return repository.findByIdCategoryEquals(cat.getId());
     }
 
-    public void addItem()
+    public RPGItem addItem(String name, long id_category, float price, String effect)
     {
-        RPGItem item = new RPGItem();
+        RPGItem item = new RPGItem(name,id_category,price,effect);
+
+        repository.save(item);
+
+        return item;
     }
 
     public List<RPGItem> getItemsOfCategoryAndMaxPrice(String catName, float maxPrice) {

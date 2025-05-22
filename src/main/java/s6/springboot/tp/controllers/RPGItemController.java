@@ -1,10 +1,8 @@
 package s6.springboot.tp.controllers;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import s6.springboot.tp.models.RPGItem;
+import s6.springboot.tp.models.RPGItemDTO;
 import s6.springboot.tp.services.RPGItemService;
 
 import java.util.List;
@@ -16,6 +14,12 @@ public class RPGItemController {
 
     public RPGItemController(RPGItemService service) {
         this.service = service;
+    }
+
+    @PostMapping("rpg/items")
+    public RPGItem postItem(@RequestBody RPGItemDTO dto)
+    {
+        return service.addItem(dto.getName(),dto.getIdCategory(),dto.getPrice(),dto.getEffect());
     }
 
     @GetMapping("/rpg/items")
