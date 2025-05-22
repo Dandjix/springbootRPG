@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface RPGItemRepository extends JpaRepository<RPGItem,Long> {
     List<RPGItem> findByIdCategoryEquals(Long id_category);
+
+    List<RPGItem> findAllByIdCategoryEqualsAndPriceLessThanEqual(long idCategory, float priceIsLessThan);
 }

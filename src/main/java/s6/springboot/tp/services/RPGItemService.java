@@ -33,4 +33,9 @@ public class RPGItemService {
     {
         RPGItem item = new RPGItem();
     }
+
+    public List<RPGItem> getItemsOfCategoryAndMaxPrice(String catName, float maxPrice) {
+        ItemCategory cat = itemCategoryService.findByName(catName);
+        return repository.findAllByIdCategoryEqualsAndPriceLessThanEqual(cat.getId(),maxPrice);
+    }
 }
