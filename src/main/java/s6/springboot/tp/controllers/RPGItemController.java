@@ -22,6 +22,12 @@ public class RPGItemController {
         return service.addItem(dto.getName(),dto.getIdCategory(),dto.getPrice(),dto.getEffect());
     }
 
+    @PutMapping("rpg/items/{itemId}")
+    public RPGItem putItem(@PathVariable long itemId, @RequestBody RPGItemDTO dto)
+    {
+        return service.putItem(itemId,dto.getName(),dto.getIdCategory(),dto.getPrice(),dto.getEffect());
+    }
+
     @GetMapping("/rpg/items")
     public List<RPGItem> getAllItems(@RequestParam(required = false) List<String> like)
     {

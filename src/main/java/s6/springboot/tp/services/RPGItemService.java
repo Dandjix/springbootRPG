@@ -8,6 +8,7 @@ import s6.springboot.tp.repositories.RPGItemRepository;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class RPGItemService {
@@ -60,5 +61,21 @@ public class RPGItemService {
             }
         }
         return new ArrayList<RPGItem>(foundItems.values());
+    }
+
+    public RPGItem putItem(long itemId, String name, long idCategory, float price, String effect) {
+        Optional<RPGItem> item = repository.findById(itemId);
+        if(item.isEmpty())
+            return null;
+
+        RPGItem itemInstance = item.get();
+
+        itemInstance.setName(name);
+        itemInstance.setIdCategory(idCategory);
+        itemInstance.setPrice(price);
+        itemInstance.setEffect(effect);
+
+        repository.save(itemInstance);
+        return itemInstance;
     }
 }

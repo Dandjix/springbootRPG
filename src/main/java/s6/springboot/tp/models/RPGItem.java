@@ -12,6 +12,22 @@ public class RPGItem {
 
     //name, id_category, price, effect
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setIdCategory(long idCategory) {
+        this.idCategory = idCategory;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
+    }
+
+    public void setEffect(String effect) {
+        this.effect = effect;
+    }
+
     private  String name;
 
     private long idCategory;
